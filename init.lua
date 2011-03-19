@@ -1,6 +1,7 @@
 ---
 -- The python module.
 -- It provides utilities for editing Python code.
+-- See also the readme.md file.
 -- User tags are loaded from _USERHOME/modules/python/tags/ and user apis
 -- are loaded from _USERHOME/modules/python/api/.
 module('_m.python', package.seeall)
@@ -26,7 +27,7 @@ module('_m.python', package.seeall)
 -- * `sense`: The Python Adeptsense.
 
 -- settings
-PYTHON = 'python'
+PYTHON = 'python' -- On Windows, for example 'C:\\Python27\\python.exe'
 CHECK_SYNTAX = true
 -- end settings
 
