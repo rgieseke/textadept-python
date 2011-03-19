@@ -19,6 +19,7 @@ module('_m.python', package.seeall)
 -- ## Settings
 --
 -- * `PYTHON`: The Python interpreter, defaults to `python`.
+-- * `CHECK_SYNTAX`: Check syntax after saving.
 --
 -- ## Fields
 --
@@ -26,6 +27,7 @@ module('_m.python', package.seeall)
 
 -- settings
 PYTHON = 'python'
+CHECK_SYNTAX = true
 -- end settings
 
 local m_editing, m_run = _m.textadept.editing, _m.textadept.run
@@ -110,8 +112,8 @@ end
 
 events.connect('file_after_save',
   function() -- show syntax errors as annotations
-    if buffer:get_lexer() == 'python' then
-       local lfs = require 'lfs'
+    if CHECK_SYNTAX and buffer:get_lexer() == 'python' then
+      local lfs = require 'lfs'
       local buffer = buffer
       buffer:annotation_clear_all()
       local filepath = buffer.filename:iconv(_CHARSET, 'UTF-8')
@@ -121,7 +123,7 @@ events.connect('file_after_save',
       end
       local current_dir = lfs.currentdir()
       lfs.chdir(filedir)
-      local command = 'python -c \"import py_compile; py_compile.compile(r\''
+      local command = PYTHON..' -c \"import py_compile; py_compile.compile(r\''
                       .. filename .. '\')\"'
       local p = io.popen(command..' 2>&1')
       local out = p:read('*line')
