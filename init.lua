@@ -149,7 +149,7 @@ events.connect('file_after_save',
 _G.keys.python = {
   al = {
     m = { io.open_file,
-          (_HOME..'/modules/python/init.lua'):iconv('UTF-8', _CHARSET) },
+          (_USERHOME..'/modules/python/init.lua'):iconv('UTF-8', _CHARSET) },
     },
   [not OSX and 'ci' or '~'] = { sense.complete, sense },
   ch = { sense.show_apidoc, sense },
