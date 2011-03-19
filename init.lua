@@ -82,6 +82,24 @@ end
 
 -- Commands.
 
+---
+-- Automatically indent after a colon.
+function indent_after_colon()
+  local buffer = buffer
+  local line_num = buffer:line_from_position(buffer.current_pos)
+  buffer:begin_undo_action()
+  buffer:new_line()
+  local line = buffer:get_line(line_num)
+  local indent = buffer.line_indentation[line_num]
+  if line:match('.+:[\n\r]+$') then
+    buffer.line_indentation[line_num + 1] = indent + buffer.indent
+    buffer:line_end()
+  else
+    buffer.line_indentation[line_num + 1] = indent
+  end
+  buffer:end_undo_action()
+end
+
 events.connect('file_after_save',
   function() -- show syntax errors as annotations
     if buffer:get_lexer() == 'python' then
@@ -125,6 +143,7 @@ _G.keys.python = {
     },
   [not OSX and 'ci' or '~'] = { sense.complete, sense },
   ch = { sense.show_apidoc, sense },
+  ['\n'] = { indent_after_colon }
 }
 
 -- Snippets.
