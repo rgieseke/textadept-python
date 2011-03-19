@@ -39,7 +39,6 @@ end
 -- Adeptsense.
 
 sense = _m.textadept.adeptsense.new('python')
-sense.syntax.class_definition = 'class%s+([%w_]+)'
 sense.syntax.symbol_chars = '[%w_%.]'
 sense.syntax.type_declarations = {}
 sense.syntax.type_assignments = {
