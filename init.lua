@@ -16,15 +16,23 @@ module('_m.python', package.seeall)
 -- + `Ctrl+H`: Show documentation for the selected symbol or the symbol under
 --   the caret.
 --
+-- ## Settings
+--
+-- * `PYTHON`: The Python interpreter, defaults to `python`.
+--
 -- ## Fields
 --
 -- * `sense`: The Python Adeptsense.
+
+-- settings
+PYTHON = 'python'
+-- end settings
 
 local m_editing, m_run = _m.textadept.editing, _m.textadept.run
 -- Comment string tables use lexer names.
 m_editing.comment_string.python = '# '
 -- Compile and Run command tables use file extensions.
-m_run.run_command.py = 'python %(filename)'
+m_run.run_command.py = PYTHON..' %(filename)'
 m_run.error_detail.python = {
   pattern = '^%s*File "([^"]+)", line (%d+)',
   filename = 1, line = 2
