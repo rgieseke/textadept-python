@@ -1,6 +1,6 @@
 ### Python module for the Textadept editor
 
-This is an early version, there are certainly bugs and things might change...
+This is an early version, there are likely bugs and things might change...
 
 Generate auto-completion info by running the `adeptsensedoc.py` script
 in the scripts folder:
@@ -11,8 +11,8 @@ in the scripts folder:
 ### License: MIT
 
 Authors:
-2011 Robert Gieseke
-Based on Mitchell's language modules and Brian Schott's original Python module.
+2011, Robert Gieseke, based on Mitchell's language modules and Brian Schott's
+original Python module.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
